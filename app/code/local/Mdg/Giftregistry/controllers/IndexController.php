@@ -21,18 +21,20 @@ class Mdg_Giftregistry_IndexController extends Mage_Core_Controller_Front_Action
     {
         try {
             $registryId = $this->getRequest()->getParam('registry_id');
-            if($registryId && $this->getRequest()->getPost()){
+            if($registryId){
                 if($registry = Mage::getModel('mdg_giftregistry/entity')->load($registryId))
                 {
                     $registry->delete();
                     $successMessage =  Mage::helper('mdg_giftregistry')->__('Gift registry has been succesfully deleted.');
-                    $this->_getSession()->addSuccess($successMessage);
+                    Mage::getSingleton('core/session')->addSuccess($successMessage);
+                    $this->_redirect('*/*/');
+
                 }else{
                     throw new Exception("There was a problem deleting the registry");
                 }
             }
         } catch (Exception $e) {
-            $this->_getSession()->addError($e->getMessage());
+            Mage::getSingleton('core/session')->addError($e->getMessage());
             $this->_redirect('*/*/');
         }
     }
@@ -55,19 +57,20 @@ class Mdg_Giftregistry_IndexController extends Mage_Core_Controller_Front_Action
     {
         try {
             $data = $this->getRequest()->getParams();
-            $registry = Mage::getModel('mgd_giftreistry/entity');
+
+            $registry = Mage::getModel('mdg_giftregistry/entity');
             $customer = Mage::getSingleton('customer/session')->getCustomer();
 
             if($this->getRequest()->getPost() && !empty($data)) {
-                $registry->setRegistryData($customer, $data);
+                $registry->updateRegistryData($customer, $data);
                 $registry->save();
                 $successMessage =  Mage::helper('mdg_giftregistry')->__('Registry Successfully Created');
-                $this->_getSession()->addSuccess($successMessage);
+                Mage::getSingleton('core/session')->addSuccess($successMessage);
             }else{
                 throw new Exception("Insufficient Data provided");
             }
         } catch (Mage_Core_Exception $e) {
-            $this->_getSession()->addError($e->getMessage());
+            Mage::getSingleton('core/session')->addError($e->getMessage());
             $this->_redirect('*/*/');
         }
         $this->_redirect('*/*/');
@@ -77,17 +80,17 @@ class Mdg_Giftregistry_IndexController extends Mage_Core_Controller_Front_Action
     {
         try {
             $data = $this->getRequest()->getParams();
-            $registry = Mage::getModel('mgd_giftreistry/entity');
+            $registry = Mage::getModel('mdg_giftregistry/entity');
             $customer = Mage::getSingleton('customer/session')->getCustomer();
 
             if($this->getRequest()->getPosts() && !empty($data) )
             {
                 $registry->load($data['registry_id']);
                 if($registry){
-                    $registry->setRegistryData($customer, $data);
+                    $registry->updateRegistryData($customer, $data);
                     $registry->save();
                     $successMessage =  Mage::helper('mdg_giftregistry')->__('Registry Successfully Saved');
-                    $this->_getSession()->addSuccess($successMessage);
+                    Mage::getSingleton('core/session')->addSuccess($successMessage);
                 }else {
                     throw new Exception("Invalid Registry Specified");
                 }
@@ -95,7 +98,7 @@ class Mdg_Giftregistry_IndexController extends Mage_Core_Controller_Front_Action
                 throw new Exception("Insufficient Data provided");
             }
         } catch (Mage_Core_Exception $e) {
-            $this->_getSession()->addError($e->getMessage());
+            Mage::getSingleton('core/session')->addError($e->getMessage());
             $this->_redirect('*/*/');
         }
         $this->_redirect('*/*/');

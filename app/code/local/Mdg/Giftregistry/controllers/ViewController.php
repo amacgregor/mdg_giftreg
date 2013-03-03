@@ -8,7 +8,7 @@ class Mdg_Giftregistry_ViewController extends Mage_Core_Controller_Front_Action
             $entity = Mage::getModel('mdg_giftregistry/entity');
             if($entity->load($registryId))
             {
-                Mage::register(loaded_registry, $entity);
+                Mage::register('loaded_registry', $entity);
                 $this->loadLayout();
                 $this->_initLayoutMessages('customer/session');
                 $this->renderLayout();
@@ -18,5 +18,6 @@ class Mdg_Giftregistry_ViewController extends Mage_Core_Controller_Front_Action
                 return $this;
             }
         }
+        $this->_redirect('*/*/');
     }
 }
