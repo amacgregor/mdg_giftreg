@@ -59,6 +59,13 @@
         </resources>
     </global>
     <frontend>
+        <layout>
+            <updates>
+                <dcp module="mdg_giftregistry">
+                    <file>mdg_giftregistry.xml</file>
+                </dcp>
+            </updates>
+        </layout>
         <routers>
             <mdg_giftregistry>
                 <use>standard</use>
