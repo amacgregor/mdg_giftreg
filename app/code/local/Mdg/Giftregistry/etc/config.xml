@@ -61,9 +61,9 @@
     <frontend>
         <layout>
             <updates>
-                <dcp module="mdg_giftregistry">
+                <mdg_giftregistry module="mdg_giftregistry">
                     <file>mdg_giftregistry.xml</file>
-                </dcp>
+                </mdg_giftregistry>
             </updates>
         </layout>
         <routers>
