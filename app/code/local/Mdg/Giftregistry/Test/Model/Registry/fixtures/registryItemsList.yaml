@@ -1,0 +1,47 @@
+scope:
+  website: # Initialize websites
+    - website_id: 2
+      code: default
+      name: Test Website
+      default_group_id: 2
+  group: # Initializes store groups
+    - group_id: 2
+      website_id: 2
+      name: Test Store Group
+      default_store_id: 2
+      root_category_id: 2 # Default Category
+  store: # Initializes store views
+    - store_id: 2
+      website_id: 2
+      group_id: 2
+      code: default
+      name: Default Test Store
+      is_active: 1
+eav:
+   customer_customer:
+     - entity_id: 1
+       entity_type_id: 3
+       website_id: 2
+       email: test@magentotest.com
+       group_id: 2
+       store_id: 2
+       is_active: 1
+   mdg_giftregistry_entity:
+     - entity_id: 1
+       customer_id: 1
+       type_id: 2
+       website_id: 2
+       event_date: 12/12/2012
+       event_country: Canada
+       event_location: Dundas Square
+       created_at: 21/12/2012
+   mdg_giftregistry_item:
+     - item_id: 1
+       registry_id: 1
+       product_id: 1
+     - item_id: 2
+       registry_id: 1
+       product_id: 2
+     - item_id: 3
+       registry_id: 1
+       product_id: 3

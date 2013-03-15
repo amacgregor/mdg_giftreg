@@ -1,0 +1,11 @@
+# Comments are supported, begin a line with a hash
+app/code/community/Demac/CanadaPost/*        app/code/community/Demac/CanadaPost/
+app/etc/modules/*             app/etc/modules/
+
+app/design/adminhtml/base/default/layout/* app/design/adminhtml/default/default/layout/
+app/design/adminhtml/base/default/template/demac/dcp/* app/design/adminhtml/base/default/template/demac/dcp
+app/design/frontend/base/default/layout/* app/design/frontend/base/default/layout/
+app/design/frontend/base/default/template/demac/* app/design/frontend/base/default/template/demac/
+
+# Execute a command on the shell
+@shell                  rm -rf $PROJECT/var/cache/*
