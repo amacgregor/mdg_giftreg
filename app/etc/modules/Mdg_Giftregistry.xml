@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Mdg_Giftregistry>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Mdg_Giftregistry >
+    </modules>
+</config>
