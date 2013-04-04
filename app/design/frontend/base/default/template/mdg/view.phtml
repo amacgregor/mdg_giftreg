@@ -1,0 +1,4 @@
+<?php $registry = Mage::registry('loaded_registry'); ?>
+<h3><?php echo $registry->getEventName(); ?></h3>
+<p><strong><?php $this->__('Event Date:') ?> <?php echo $registry->getEventDate(); ?></strong></p>
+<p><strong><?php $this->__('Event Location:') ?> <?php echo $registry->getEventLocation(); ?></strong></p>

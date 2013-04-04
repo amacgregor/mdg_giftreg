@@ -1,0 +1,22 @@
+<?php
+    $collection = $this->getCustomerRegistryCollection();
+?>
+<?php if($collection->count() > 0): ?>
+    <?php $helper = Mage::helper('mdg_giftregistry'); ?>
+    <form action="<?php echo $this->getUrl('giftregistry/item/add/') ?>" method="post" id="form-validate">
+        <fieldset>
+            <select id="registry_id" name="registry_id">
+                <?php foreach($collection as $registry): ?>
+                    <option value="<?php echo $registry->getEntityId() ?>"><?php echo $registry->getEventName() ?></option>
+                <?php endforeach; ?>
+            </select>
+            <input type="hidden" id="product_id" name="product_id" value="<?php echo Mage::registry('current_product')->getId(); ?>" />
+            <button class="button btn-cart" title="Add to Registry" type="submit">
+                <span>
+                    <span>Add to Registry</span>
+                </span>
+            </button>
+        </fieldset>
+    </form>
+<?php endif; ?>
+

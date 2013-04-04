@@ -1,0 +1,34 @@
+<?php
+$_collection = $this->getCustomerRegistries();
+$helper = Mage::helper('mdg_giftregistry')
+?>
+<div class="customer-list">
+    <?php if(!$_collection->count()): ?>
+        <h2><?php echo $this->__('You have no registries.') ?></h2>
+        <a href="<?php echo $this->getUrl('giftregistry/index/new') ?>">
+            <?php echo $this->__('Click Here to create a new Gift Registry') ?>
+        </a>
+    <?php else: ?>
+        <ul>
+            <?php foreach($_collection as $registry): ?>
+                <li>
+                    <h3><?php echo $registry->getEventName(); ?></h3>
+                    <p><strong><?php echo $this->__('Event Name:') ?> <?php echo $registry->getEventName(); ?></strong></p>
+                    <p><strong><?php echo $this->__('Event Location:') ?> <?php echo $registry->getEventLocation(); ?></strong></p>
+                    <a href="<?php echo $this->getUrl('giftregistry/view/view', array('_query' => array('registry_id' => $registry->getEntityId()))) ?>">
+                        <?php echo $this->__('View Registry') ?>
+                    </a>
+                    <?php if($helper->isRegistryOwner($registry->getCustomerId())): ?>
+                        <a href="<?php echo $this->getUrl('giftregistry/index/edit', array('_query' => array('registry_id' => $registry->getEntityId()))) ?>">
+                            <?php echo $this->__('Edit Registry') ?>
+                        </a>
+                        <a href="<?php echo $this->getUrl('giftregistry/index/delete', array('_query' => array('registry_id' => $registry->getEntityId()))) ?>">
+                            <?php echo $this->__('Delete Registry') ?>
+                        </a>
+                    <?php endif; ?>
+                </li>
+            <?php endforeach; ?>
+        </ul>
+    <?php endif; ?>
+</div>
+
