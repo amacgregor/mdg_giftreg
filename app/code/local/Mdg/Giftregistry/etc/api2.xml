@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<config>
+    <api2>
+        <resource_groups>
+            <giftregistry translate="title" module="mdg_giftregistry">
+                <title>MDG GiftRegistry API calls</title>
+                <sort_order>30</sort_order>
+                <children>
+                    <giftregistry_registry translate="title" module="mdg_giftregistry">
+                        <title>Gift Registries</title>
+                        <sort_order>50</sort_order>
+                    </giftregistry_registry>
+                    <giftregistry_item translate="title" module="mdg_giftregistry">
+                        <title>Gift Registry Items</title>
+                        <sort_order>50</sort_order>
+                    </giftregistry_item>
+                </children>
+            </giftregistry>
+        </resource_groups>
+        <resources>
+            <giftregistryregistry translate="title" module="mdg_giftregistry">
+                <group>giftregistry_registry</group>
+                <model>mdg_giftregistry/api_registry</model>
+                <working_model>mdg_giftregistry/api_registry</working_model>
+                <title>Gift Registry</title>
+                <sort_order>10</sort_order>
+                <privileges>
+                    <admin>
+                        <create>1</create>
+                        <retrieve>1</retrieve>
+                        <update>1</update>
+                        <delete>1</delete>
+                    </admin>
+                </privileges>
+                <attributes translate="product_count" module="mdg_giftregistry">
+                    <registry_list>Registry List</registry_list>
+                    <registry>Registry</registry>
+                    <item_list>Item List</item_list>
+                    <item>Item</item>
+                </attributes>
+                <entity_only_attributes>
+                </entity_only_attributes>
+                <exclude_attributes>
+                </exclude_attributes>
+                <routes>
+                    <route_registry_list>
+                        <route>/mdg/registry/list</route>
+                        <action_type>collection</action_type>
+                    </route_registry_list>
+                    <route_registry_entity>
+                        <route>/mdg/registry/:registry_id</route>
+                        <action_type>entity</action_type>
+                    </route_registry_entity>
+                    <route_registry_list>
+                        <route>/mdg/registry_item/list</route>
+                        <action_type>collection</action_type>
+                    </route_registry_list>
+                    <route_registry_list>
+                        <route>/mdg/registry_item/:item_id</route>
+                        <action_type>entity</action_type>
+                    </route_registry_list>
+                </routes>
+                <versions>1</versions>
+            </giftregistryregistry>
+        </resources>
+    </api2>
+</config>

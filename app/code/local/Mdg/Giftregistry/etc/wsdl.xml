@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns:typens="urn:{{var wsdl.name}}" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+    xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns="http://schemas.xmlsoap.org/wsdl/"
+    name="{{var wsdl.name}}" targetNamespace="urn:{{var wsdl.name}}">
+    <types>
+        <schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:Magento">
+            <import namespace="http://schemas.xmlsoap.org/soap/encoding/" schemaLocation="http://schemas.xmlsoap.org/soap/encoding/"/>
+            <complexType name="giftRegistryEntity">
+                <all>
+                    <element name="entity_id" type="xsd:integer" minOccurs="0" />
+                    <element name="customer_id" type="xsd:integer" minOccurs="0" />
+                    <element name="type_id" type="xsd:integer" minOccurs="0" />
+                    <element name="website_id" type="xsd:integer" minOccurs="0" />
+                    <element name="event_date" type="xsd:string" minOccurs="0" />
+                    <element name="event_country" type="xsd:string" minOccurs="0" />
+                    <element name="event_location" type="xsd:string" minOccurs="0" />
+                </all>
+            </complexType>
+            <complexType name="giftRegistryEntityArray">
+                <complexContent>
+                    <restriction base="soapenc:Array">
+                        <attribute ref="soapenc:arrayType" wsdl:arrayType="typens:giftRegistryEntity[]" />
+                    </restriction>
+                </complexContent>
+            </complexType>
+            <complexType name="registryItemsEntity">
+                <all>
+                    <element name="item_id" type="xsd:integer" minOccurs="0" />
+                    <element name="registry_id" type="xsd:integer" minOccurs="0" />
+                    <element name="product_id" type="xsd:integer" minOccurs="0" />
+                </all>
+            </complexType>
+            <complexType name="registryItemsArray">
+                <complexContent>
+                    <restriction base="soapenc:Array">
+                        <attribute ref="soapenc:arrayType" wsdl:arrayType="typens:registryItemsEntity[]" />
+                    </restriction>
+                </complexContent>
+            </complexType>
+        </schema>
+    </types>
+
+    <message name="gitregistryRegistryListRequest">
+        <part name="sessionId" type="xsd:string" />
+        <part name="customerId" type="xsd:integer"/>
+    </message>
+    <message name="gitregistryRegistryListResponse">
+        <part name="result" type="typens:giftRegistryEntityArray" />
+    </message>
+    <message name="gitregistryRegistryInfoRequest">
+        <part name="sessionId" type="xsd:string" />
+        <part name="registryId" type="xsd:integer"/>
+    </message>
+    <message name="gitregistryRegistryInfoResponse">
+        <part name="result" type="typens:giftRegistryEntity" />
+    </message>
+    <message name="gitregistryItemListRequest">
+        <part name="sessionId" type="xsd:string" />
+        <part name="registryId" type="xsd:integer"/>
+    </message>
+    <message name="gitregistryItemListResponse">
+        <part name="result" type="typens:registryItemsArray" />
+    </message>
+    <message name="gitregistryItemInfoRequest">
+        <part name="sessionId" type="xsd:string" />
+        <part name="registryItemId" type="xsd:integer"/>
+    </message>
+    <message name="gitregistryItemInfoResponse">
+        <part name="result" type="typens:registryItemsEntity" />
+    </message>
+
+    <portType name="{{var wsdl.handler}}PortType">
+        <operation name="giftregistryRegistryList">
+            <documentation>Get Registries List</documentation>
+            <input message="typens:gitregistryRegistryListRequest" />
+            <output message="typens:gitregistryRegistryListResponse" />
+        </operation>
+        <operation name="giftregistryRegistryInfo">
+            <documentation>Get Registry Info</documentation>
+            <input message="typens:gitregistryRegistryInfoRequest" />
+            <output message="typens:gitregistryRegistryInfoResponse" />
+        </operation>
+        <operation name="giftregistryItemList">
+            <documentation>getAllProductsInfo</documentation>
+            <input message="typens:gitregistryItemListRequest" />
+            <output message="typens:gitregistryItemListResponse" />
+        </operation>
+        <operation name="giftregistryItemInfo">
+            <documentation>getAllProductsInfo</documentation>
+            <input message="typens:gitregistryItemInfoRequest" />
+            <output message="typens:gitregistryItemInfoResponse" />
+        </operation>
+    </portType>
+
+
+    <binding name="{{var wsdl.handler}}Binding" type="typens:{{var wsdl.handler}}PortType">
+        <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http" />
+        <operation name="giftregistryRegistryList">
+            <soap:operation soapAction="urn:{{var wsdl.handler}}Action" />
+            <input>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+            </input>
+            <output>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+            </output>
+        </operation>
+        <operation name="giftregistryRegistryInfo">
+            <soap:operation soapAction="urn:{{var wsdl.handler}}Action" />
+            <input>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+            </input>
+            <output>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+            </output>
+        </operation>
+        <operation name="giftregistryItemList">
+            <soap:operation soapAction="urn:{{var wsdl.handler}}Action" />
+            <input>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+            </input>
+            <output>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+            </output>
+        </operation>
+        <operation name="giftregistryInfoList">
+            <soap:operation soapAction="urn:{{var wsdl.handler}}Action" />
+            <input>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+            </input>
+            <output>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+            </output>
+        </operation>
+    </binding>
+    
+    <service name="{{var wsdl.name}}Service">
+        <port name="{{var wsdl.handler}}Port" binding="typens:{{var wsdl.handler}}Binding">
+            <soap:address location="{{var wsdl.url}}" />
+        </port>
+    </service>
+</definitions>

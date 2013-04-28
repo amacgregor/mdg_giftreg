@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<config>
+		<api>
+				<resources>
+						<giftregistry_registry translate="title" module="mdg_giftregistry">
+								<model>mdg_giftregistry/api</model>
+								<title>Mdg Giftregistry Registry functions</title>
+								<methods>
+										<list translate="title" module="mdg_giftregistry">
+												<title>getRegistryList</title>
+												<method>getRegistryList</method>
+										</list>
+										<info translate="title" module="mdg_giftregistry">
+												<title>getRegistryInfo</title>
+												<method>getRegistryInfo</method>
+										</info>
+								</methods>
+						</giftregistry_registry>
+						<giftregistry_item translate="title" module="mdg_giftregistry">
+								<model>mdg_giftregistry/api</model>
+								<title>Mdg Giftregistry Registry Items functions</title>
+								<methods>
+										<list translate="title" module="mdg_giftregistry">
+												<title>getRegistryItems</title>
+												<method>getRegistryItems</method>
+										</list>
+										<info translate="title" module="mdg_giftregistry">
+												<title>getRegistryItemInfo</title>
+												<method>getRegistryItemInfo</method>
+										</info>
+								</methods>
+						</giftregistry_item>
+				</resources>
+				<resources_alias>
+						<giftregistry_registry>giftregistry_registry</giftregistry_registry>
+						<giftregistry_item>giftregistry_item</giftregistry_item>
+				</resources_alias>
+				<v2>
+						<resources_function_prefix>
+								<giftregistry_registry>giftregistry_registry</giftregistry_registry>
+								<giftregistry_item>giftregistry_item</giftregistry_item>
+						</resources_function_prefix>
+						<acl>
+						    <resources>
+						        <giftregistry translate="title" module="mdg_giftregistry">
+						            <title>MDG Gift Registry</title>
+						            <sort_order>1</sort_order>
+						            <registry translate="title" module="mdg_giftregistry">
+						                <title>MDG Gift Registry</title>
+						                <list translate="title" module="mdg_giftregistry">
+						                    <title>List Available Registries</title>
+						                </list>
+						                <info translate="title" module="mdg_giftregistry">
+						                    <title>Retrieve registry data</title>
+						                </info>
+						            </registry>
+						            <item translate="title" module="mdg_giftregistry">
+						                <title>MDG Gift Registry Item</title>
+						                <list translate="title" module="mdg_giftregistry">
+						                    <title>List Available Items inside a registry</title>
+						                </list>
+						                <info translate="title" module="mdg_giftregistry">
+						                    <title>Retrieve registry item data</title>
+						                </info>
+						            </item>
+						        </giftregistry>
+						    </resources>
+						</acl>
+				</v2>
+		</api>
+</config>
