@@ -3,7 +3,13 @@
 $installer = $this;
 $installer->startSetup();
 
-// Registry Type od table
+
+
+/**
+ * Create Registry Type Table 
+ *
+ *
+ */
 
 $tableName = $installer->getTable('mdg_giftregistry/type');
 // Check if the table already exists
@@ -41,7 +47,11 @@ if ($installer->getConnection()->isTableExists($tableName) != true) {
     $installer->getConnection()->createTable($table);
 }
 
-// Create the mdg_giftregistry/registry table
+/**
+ * Create Registry Entity Table 
+ *
+ *
+ */
 $tableName = $installer->getTable('mdg_giftregistry/entity');
 // Check if the table already exists
 if ($installer->getConnection()->isTableExists($tableName) != true) {
@@ -138,6 +148,39 @@ if ($installer->getConnection()->isTableExists($tableName) != true) {
     $installer->getConnection()->createTable($table);
 }
 
+/**
+ * Create Registry Item Table 
+ *
+ *
+ */
+$tableName = $installer->getTable('mdg_giftregistry/item');
+// Check if the table already exists
+if ($installer->getConnection()->isTableExists($tableName) != true) {
+    $table = $installer->getConnection()
+        ->newTable($installer->getTable('mdg_giftregistry/item'))
+        ->addColumn('item_id', Varien_Db_Ddl_Table::TYPE_INTEGER, null, array(
+            'identity'  => true,
+            'unsigned'  => true,
+            'nullable'  => false,
+            'primary'   => true,
+        ), 'Type Id')
+        ->addColumn('product_id', Varien_Db_Ddl_Table::TYPE_INTEGER, null, array(
+            'nullable'  => false
+        ), 'Type Id')
+        ->addColumn('registry_id', Varien_Db_Ddl_Table::TYPE_INTEGER, null, array(
+            'nullable'  => false
+        ), 'Type Id')
+        ->addColumn('added_at', Varien_Db_Ddl_Table::TYPE_TIMESTAMP, null,
+            array(
+                'nullable' => false,
+            ),
+            'Added At')
+        ->addIndex($installer->getIdxName('mdg_giftregistry/item', array('product_id')),
+            array('product_id'))
+        ->addIndex($installer->getIdxName('mdg_giftregistry/item', array('registry_id')),
+            array('registry_id'));
+    $installer->getConnection()->createTable($table);
+}
 
 
 $installer->endSetup();
