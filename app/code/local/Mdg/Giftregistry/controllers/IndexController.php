@@ -71,6 +71,38 @@ class Mdg_Giftregistry_IndexController extends Mage_Core_Controller_Front_Action
         return $this;
     }
 
+
+    public function saveAction()
+    {
+        if ($data = $this->getRequest()->getPost()) {
+            try {
+                $model      = $this->_initModel();
+                $customer   = Mage::getSingleton('customer/session')->getCustomer();
+
+
+                // Update the model with the form data
+                $model->updateRegistryData($customer, $data);
+                $model->save();
+
+                Mage::getSingleton('core/session')
+                        ->addSuccess($this->__('The gift registry has been saved.'));
+
+                if ($redirectBack = $this->getRequest()->getParam('back', false)) {
+                    $this->_redirect('*/*/edit', array('id' => $model->getId(), 'store' => $model->getStoreId()));
+                    return;
+                }
+            } catch (Mage_Core_Exception $e) {
+                Mage::getSingleton('core/session')->addError($e->getMessage());
+                $this->_redirect('*/*/edit', array('id' => $model->getId()));
+                return;
+            } catch (Exception $e) {
+                Mage::getSingleton('core/session')->addError($this->__('There was an error trying to save the gift registry.'));
+                Mage::logException($e);
+            }
+        }
+        $this->_redirect('*/*/');
+    }
+
     public function newPostAction()
     {
         try {
