@@ -1,0 +1,42 @@
+<?php $helper = Mage::helper('mdg_giftregistry'); ?>
+<form action="<?php echo $this->getUrl('giftregistry/index/newPost/') ?>" method="post" id="form-validate">
+    <fieldset>
+        <?php echo $this->getBlockHtml('formkey')?>
+        <ul class="form-list">
+            <li>
+                <label for="type_id"><?php echo $this->__('Event type') ?></label>
+                <select name="type_id" id="type_id">
+                    <?php foreach($helper->getEventTypes() as $type): ?>
+                        <option id="<?php echo $type->getCode(); ?>" value="<?php echo $type->getTypeId(); ?>">
+                            <?php echo $type->getName(); ?>
+                        </option>
+                    <?php endforeach; ?>
+                </select>
+            </li>
+            <li class="field">
+                <label class="giftreg" for="event_name"><?php echo $this->__('Event Name') ?></label>
+                <input type="text" name="event_name" id="event_name" value="" title="Event Name"/>
+            </li>
+            <li class="field">
+                <label class="giftreg" for="event_location"><?php echo $this->__('Event Location') ?></label>
+                <input type="text" name="event_location" id="event_location" value="" title="Event Location"/>
+            </li>
+            <li class="field">
+                <label class="giftreg" for="event_country"><?php echo $this->__('Event Country') ?></label>
+                <input type="text" name="event_country" id="event_country" value="" title="Event Country"/>
+            </li>
+        </ul>
+        <div class="buttons-set">
+            <button type="submit" title="Save" class="button">
+                <span>
+                    <span><?php echo $this->__('Save') ?></span>
+                </span>
+            </button>
+        </div>
+    </fieldset>
+</form>
+<script type="text/javascript">
+    //<![CDATA[
+    var dataForm = new VarienForm('form-validate', true);
+    //]]>
+</script>
