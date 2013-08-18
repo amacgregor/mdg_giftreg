@@ -10,6 +10,24 @@ class Mdg_Giftregistry_IndexController extends Mage_Core_Controller_Front_Action
         }
     }
 
+    public function _initModel($param = 'id')
+    {
+        $model = Mage::getModel('mdg_giftregistry/entity');
+        $model->setStoreId($this->getRequest()->getParam('store', 0));
+
+        if( $modelId = $this->getRequest()->getParam($param))
+        {
+            $model->load($modelId);
+            if(!$model->getId())
+            {
+                Mage::throwException($this->__('There was a problem initializing the gift registry.'));
+            }
+
+            return $model;
+        }
+        return false;
+    }
+
     public function indexAction()
     {
         $this->loadLayout();
