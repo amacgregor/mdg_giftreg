@@ -1,0 +1,40 @@
+<?php
+    $helper = Mage::helper('mdg_giftregistry');
+    $loadedRegistry = Mage::getSingleton('customer/session')->getLoadedRegistry();
+?>
+<?php if($loadedRegistry): ?>
+    <form action="<?php echo $this->getUrl('giftregistry/index/editPost/') ?>" method="post" id="form-validate">
+        <fieldset>
+            <?php echo $this->getBlockHtml('formkey')?>
+            <input type="hidden" id="type_id" value="<?php echo $loadedRegistry->getTypeId(); ?>" />
+            <ul class="form-list">
+                <li class="field">
+                    <label class="giftreg" for="event_name"><?php echo $this->__('Event Name') ?></label>
+                    <input type="text" name="event_name" id="event_name" value="<?php echo $loadedRegistry->getEventName(); ?>" title="Event Name"/>
+                </li>
+                <li class="field">
+                    <label class="giftreg" for="event_location"><?php echo $this->__('Event Location') ?></label>
+                    <input type="text" name="event_location" id="event_location" value="<?php echo $loadedRegistry->getEventLocation(); ?>" title="Event Location"/>
+                </li>
+                <li class="field">
+                    <label class="giftreg" for="event_country"><?php echo $this->__('Event Country') ?></label>
+                    <input type="text" name="event_country" id="event_country" value="<?php echo $loadedRegistry->getEventCountry(); ?>" title="Event Country"/>
+                </li>
+            </ul>
+            <div class="buttons-set">
+                <button type="submit" title="Save" class="button">
+                    <span>
+                        <span><?php echo $this->__('Save') ?></span>
+                    </span>
+                </button>
+            </div>
+        </fieldset>
+    </form>
+    <script type="text/javascript">
+        //<![CDATA[
+        var dataForm = new VarienForm('form-validate', true);
+        //]]>
+    </script>
+<?php else: ?>
+    <h2><?php echo $this->__('There was a problem loading the registry') ?></h2>
+<?php endif; ?>
