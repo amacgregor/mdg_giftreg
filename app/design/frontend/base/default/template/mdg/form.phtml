@@ -1,6 +1,6 @@
 <?php
     $helper = Mage::helper('mdg_giftregistry');
-    $loadedRegistry = Mage::registry('current_giftregistry')
+    $loadedRegistry = Mage::registry('current_giftregistry');
 ?>
 <?php if($loadedRegistry): ?>
     <form action="<?php echo $this->getUrl('giftregistry/index/save/') ?>" method="post" id="form-validate">
