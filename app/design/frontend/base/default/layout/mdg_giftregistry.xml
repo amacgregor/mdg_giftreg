@@ -11,13 +11,13 @@
 
     <mdg_giftregistry_index_new>
         <reference name="content">
-            <block name="giftregistry.new" type="core/template" template="mdg/new.phtml" as="giftregistry_new"/>
+            <block name="giftregistry.new" type="core/template" template="mdg/form.phtml" as="giftregistry_new"/>
         </reference>
     </mdg_giftregistry_index_new>
 
     <mdg_giftregistry_index_edit>
         <reference name="content">
-            <block name="giftregistry.edit" type="core/template" template="mdg/edit.phtml" as="giftregistry_edit"/>
+            <block name="giftregistry.edit" type="core/template" template="mdg/form.phtml" as="giftregistry_edit"/>
         </reference>
     </mdg_giftregistry_index_edit>
 
