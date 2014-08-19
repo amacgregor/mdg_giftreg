@@ -1,7 +1,7 @@
 mdg_giftreg
 ===========
 
-Gift Registry Module for the Magento Developers Guide
+Gift Registry Module for the Magento Developers Guide.
 
 How to Use this Repository
 --------------------------
